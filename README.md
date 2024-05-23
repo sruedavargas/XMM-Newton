@@ -17,3 +17,17 @@ Description:
 - The spectra extraction takes as input the working directory. The script extracts the average spectra for each camera in an observation. It uses the corresponding PN table for each observation. It also extracts one single spectrum for each bin created. Both types of spectra (average and single) are grouped in bins of 20 photons.
 - The Sorting script takes all the products created for all the observations, and sorts every file in different folders, depending on the object. One single folder is created per object. This script needs a .csv file called "sources_obs_id.csv" with the name of the sources and their corresponding observations id (see example of .ods file that needs to be saved as .csv file)
 - The spectra fitting script needs the model and initial parameters for an average spectrum. It fits those spectra, finds the best-fit values, and uses them to fit the single spectra in that observation. The fit for every bin is done by unfreezing N_h and the normalization for the power-law parameters first, and then unfreezing gamma too. This script needs a .csv file called "energies_epatplot.csv" (see example) with the energy ranges to use for each observation and camera. 
+
+Known problems:
+
+1.
+The problem:
+In the Reduction script, the ccf.cif files are overwritten for each new observation
+The solution:
+Make sure the Reduction script is inside the working directory.
+
+3.
+The problem:
+In the spectra-fitting script, Xspec cannot set the energies for a given spectrum. This happens because the background spectrum, the .arf, or the .rmf files for one of the cameras of one observation were not loaded into PyXspec. This is most likely because those files do not exist in the spectra_files directory, meaning the Spectra_extraction script did not create them. 
+The solution: 
+Run the Spectra_extraction script again
