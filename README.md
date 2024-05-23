@@ -26,7 +26,7 @@ In the Reduction script, the ccf.cif files are overwritten for each new observat
 The solution:
 Make sure the Reduction script is inside the working directory.
 
-3.
+2.
 The problem:
 In the spectra-fitting script, Xspec cannot set the energies for a given spectrum. This happens because the background spectrum, the .arf, or the .rmf files for one of the cameras of one observation were not loaded into PyXspec. This is most likely because those files do not exist in the spectra_files directory, meaning the Spectra_extraction script did not create them. 
 The solution: 
